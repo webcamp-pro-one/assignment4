@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  amount: 1
+  create_at: 2021-03-14 18:47:44
+  update_at: 2021-03-14 18:47:44
+  item_id: 1
+  customer_id: 1
+
+two:
+  amount: 1
+  create_at: 2021-03-14 18:47:44
+  update_at: 2021-03-14 18:47:44
+  item_id: 1
+  customer_id: 1
