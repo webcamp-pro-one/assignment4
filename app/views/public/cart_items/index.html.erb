@@ -1,0 +1,35 @@
+<div class="container-fluid">
+    <div class="row">
+        
+        <div class="col-md-2 bg-danger"></div>
+
+        <div class="col-md-7 py-5">
+            <h3>ショッピングカート</h3>
+            <%= link_to "削除", destroy_cart_items_path, method: :delete %>
+             <table width="50%" class="table">
+                <tr>
+                   <th>商品名</th>
+                   <th>税抜価格</th>
+                   <th>数量</th>
+                   <th>小計</th>
+                   <th></th>
+                </tr>
+                <% @cart_items.each do |cart_item| %>
+                    <% intax = (cart_item.item.price*@tax).floor %>
+                    <% subtotal = (intax*cart_item.amount) %>
+                    <tr>
+                        <td><%= cart_item.item.name %></td>
+                        <td><%= intax %></td>
+                        <td><%= cart_item.amount %></td>
+                        <td><%= subtotal %></td>
+                        <td><%= link_to "削除", destroy_cart_item_path(cart_item), method: :delete %></td>
+                    </tr>
+                <% end %>
+           </table>
+        </div>
+        <div class="col-md-1 bg-danger"></div>
+        <div class="col-md-1 bg-light"></div>
+        <div class="col-md-1 bg-warning"></div>
+       
+    </div>
+</div>
