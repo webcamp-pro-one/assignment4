@@ -10,17 +10,7 @@ class ApplicationController < ActionController::Base
               mypage_path              
         end
     end
-        
-    def after_sign_out_path_for(resource)
-        case resource
-            when Admin
-                new_admin_session_path
-            when Customer
-                new_customer_session_path
-        end
-        
-    end
-    
+
 
     protected
     
@@ -36,8 +26,7 @@ class ApplicationController < ActionController::Base
             devise_parameter_sanitizer.permit(:sign_in,keys:[:email])
             devise_parameter_sanitizer.permit(:account_update,keys:[:name,:email])
         elsif resource_class == Admin
-            devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:email])
-            devise_parameter_sanitizer.permit(:sign_in,keys:[:email])
+            devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
             devise_parameter_sanitizer.permit(:account_update,keys:[:name,:email])
         end
     end
