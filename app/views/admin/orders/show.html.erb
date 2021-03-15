@@ -43,11 +43,11 @@
                 </tr>
                 <% @order.order_item_id.each do |order_item| %>
                 <tr>
-                    <td><%= oder_item.create_at %></td>
-                    <td><%= oder_item.price %></td>
-                    <td><%= oder_item.amount %></td>
-                    <td><%= oder_item.price*oder_item_id.amount %></td>
-                    <td><%= oder_item.is_active %></td>
+                    <td><%= order_item.create_at %></td>
+                    <td><%= order_item.price %></td>
+                    <td><%= order_item.amount %></td>
+                    <td><%= order_item.price*oder_item_id.amount %></td>
+                    <td><%= order_item.is_active %></td>
                 </tr>
                 <% end %>
             </table>
