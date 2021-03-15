@@ -1,0 +1,43 @@
+<div class="container">
+    
+    <div class ="row">
+        <div class="col-md-2">
+        </div>
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-5 py-5">
+            <h3 class="pb-4">商品詳細</h3>
+            <table class="table">
+                <tr>
+                    <th>商品名</th>
+                    <td><%= @item.name %></td>
+                </tr>
+                <tr>
+                    <th>商品説明</th>
+                    <td><%= @item.introduction %></td>
+                </tr>
+                <tr>
+                    <th>ジャンル</th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>
+                       税込価格<br/>
+                       (税抜価格)
+                    </th>
+                    <td>
+                       <%= (@item.price*1.1).floor %><span class="pl-1">(</span><%=  @item.price %><span>)</span>
+                    </td>
+                </tr>
+                <tr>
+                   <th>販売ステータス</th>
+                   <td></td>
+                </tr>
+            </table>
+            <%= link_to "戻る", admin_items_path, class:"" %>
+            <%= link_to "編集する", edit_admin_item_path, class:"" %>
+        </div>
+        <div class="col-md-2">
+        </div>
+    </div>
+</div>
