@@ -1,0 +1,46 @@
+<div class="container-fluid">
+    <div class ="row">
+        <div class="col-md-1 bg-danger"></div>
+        <div class="col-md-1 bg-light"></div>
+        <div class="col-md-1 bg-warning"></div>
+
+        <div class="col-md-3">
+            写真
+        </div>
+        <div class="col-md-4 my-5">
+             <h3 class="mt-5 mb-4">商品詳細</h3>
+            <table class="table">
+                <tr>
+                    <th>商品名</th>
+                    <td><%= @item.name %></td>
+                </tr>
+                <tr>
+                    <th>商品説明</th>
+                    <td><%= @item.introduction %></td>
+                </tr>
+                <tr>
+                    <th>ジャンル</th>
+                    <td></td>
+                </tr>
+                <tr>
+                    <th>
+                       税込価格<br/>
+                       (税抜価格)
+                    </th>
+                    <td>
+                       <%= (@item.price*1.1).floor %><span class="pl-1">(</span><%=  @item.price %><span>)</span>
+                    </td>
+                </tr>
+            </table>
+            <div>
+            <%= form_with model: @cart_item, url: '/cart_items' local: true do |f| %>
+                <%= f.hidden_field :customer_id, value: current_customer.id %>
+                <%= f.hidden_field :item_id, value: @item.id %>
+                <%= f.text_field :amount, placeholder: "個数" %>
+                <%= f.submit "カートに入れる" %>
+            <% end %>
+            </div>
+            </div>
+        <div class="col-md-2 bg-danger"></div>
+    </div>
+</div>
