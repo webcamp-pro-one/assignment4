@@ -9,6 +9,77 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
+ <header class="container">
+    <div>
+      <div>
+        <nav class="navbar">
+          <div class=""><h1>logo</h1></div>
+    
+          <% if customer_signed_in? %>
+          <%= current_customer.id %>
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+              <li class="nav-item">
+                <%= link_to mypage_path, class: "nav-link" do %>
+                  <i class="fas fa-house-user"></i>　マイページ
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_customer_session_path, method: :delete, class: "nav-link" do %>
+                  <i class="fas fa-house-user"></i>　ログアウト
+                <% end %>
+              </li>
+            </ul>
+            
+            <% elsif admin_signed_in? %>
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+              <li class="nav-item">
+                <%= link_to about_path, class: "nav-link" do %>
+                  <i class="fab fa-readme"></i>　About
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to items_path, class: "nav-link" do %>
+                  <i class="fas fa-cheese"></i> 商品一覧
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to new_customer_registration_path, class: "nav-link" do %>
+                  <i class="fas fa-file-signature"></i> 新規登録
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to destroy_admin_session_path, method: :delete, class: "nav-link" do %>
+                  <i class="fas fa-sign-in-alt"></i> ログアウト
+                  <% end %>
+          <% else %>
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+              <li class="nav-item">
+                <%= link_to about_path, class: "nav-link" do %>
+                  <i class="fab fa-readme"></i>　About
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to items_path, class: "nav-link" do %>
+                  <i class="fas fa-cheese"></i> 商品一覧
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to new_customer_registration_path, class: "nav-link" do %>
+                  <i class="fas fa-file-signature"></i> 新規登録
+                <% end %>
+              </li>
+              <li class="nav-item">
+                <%= link_to new_customer_session_path, class: "nav-link" do %>
+                  <i class="fas fa-sign-in-alt"></i> ログイン
+                <% end %>
+              </li>
+            </ul>
+          <% end %>
+        </nav>
+      </div>
+    </div>
+  </header>
+
   <body>
     <%= yield %>
   </body>
