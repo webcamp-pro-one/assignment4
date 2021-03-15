@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  price_intax: 1
+  amount: 1
+  is_active: 1
+  create_at: 2021-03-14 19:08:48
+  update_at: 2021-03-14 19:08:48
+  item_id: 1
+  order_id: 1
+
+two:
+  price_intax: 1
+  amount: 1
+  is_active: 1
+  create_at: 2021-03-14 19:08:48
+  update_at: 2021-03-14 19:08:48
+  item_id: 1
+  order_id: 1

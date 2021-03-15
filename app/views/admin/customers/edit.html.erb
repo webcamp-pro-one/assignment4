@@ -1,0 +1,58 @@
+<div class="container pt-5">
+    <div class="row">
+            <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <h3 class="pb-4">会員情報編集</h3>
+            <div>
+                <%= form_with model: [:admin, @customer], local: true do |f| %>
+                    <table class="table">
+                        <tr>
+                            <th>
+                                <label for="inputName">氏名</label>
+                            </th>
+                            <td class="d-flex flex-row">
+                                <%= f.text_field :last_name, class:"mr-4", autofocus: true, id:"inputLastName", placeholder: "姓" %>
+                                <%= f.text_field :first_name, autofocus: true, id:"inputFirstName", placeholder: "名" %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th>
+                                <label for="inputNameKana">フリガナ</label>
+                            </th>
+                            <td>
+                                <%= f.text_field :last_name_kana, class:"mr-4", autofocus: true, id:"inputLastNameKana", placeholder: "セイ" %>
+                                <%= f.text_field :first_name_kana, autofocus: true, id:"inputFirstNameKana", placeholder: "メイ" %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="inputPostalCode">郵便番号</label></th>
+                            <td><%= f.text_field :postal_code, autofocus: true, id:"inputIntroduction", placeholder: "郵便番号" %></td>
+                        </tr>
+                        <tr>
+                            <th><label for="inputAddress">住所</label></th>
+                            <td><%= f.text_field :address, autofocus: true, id:"inputAddress", placeholder: "住所" %></td>
+                        </tr>
+                        <tr>
+                            <th><label for="inputTelephoneNumber">電話番号</label></th>
+                            <td>
+                               <%= f.text_field :telephone_number, autofocus: true, id:"inputTelephoneNumber", placeholder: "電話番号" %>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th><label for="inputEmail">メールアドレス</label></th>
+                            <td>
+                               <%= f.email_field :price, autofocus: true, id:"inputEmail", placeholder: "メールアドレス" %>
+                            </td>
+                        </tr>
+                        <tr>
+                           <th><label for="inputIsActiv">会員ステータス</label></th>
+                           <td></td>
+                        </tr>
+                    </table>
+                    <%= f.submit "保存" %>
+                <% end %>
+            </div>
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+</div>
