@@ -7,9 +7,9 @@
         <div class="col-md-3">
             写真
         </div>
-        <div class="col-md-4 my-5">
-             <h3 class="mt-5 mb-4">商品詳細</h3>
-            <table class="table">
+        <div class="col-md-3 my-5 d-flex justify-content-center">
+            <h3 class="mt-5 mb-4">商品詳細</h3>
+            <table width="80%" class="table">
                 <tr>
                     <th>商品名</th>
                     <td><%= @item.name %></td>
@@ -33,7 +33,7 @@
                 </tr>
             </table>
             <div>
-            <%= form_with model: @cart_item, url: '/cart_items' local: true do |f| %>
+            <%= form_with model: @cart_item, url: '/cart_items', local: true do |f| %>
                 <%= f.hidden_field :customer_id, value: current_customer.id %>
                 <%= f.hidden_field :item_id, value: @item.id %>
                 <%= f.text_field :amount, placeholder: "個数" %>
@@ -41,6 +41,6 @@
             <% end %>
             </div>
             </div>
-        <div class="col-md-2 bg-danger"></div>
+        <div class="col-md-2"></div>
     </div>
 </div>

@@ -30,8 +30,9 @@ Rails.application.routes.draw do
     patch '/mypage' => 'customers#update'
     get 'customers/:id/status' => 'customers#status'
     patch 'customers/:id' => 'customers#change'
-    resources :cart_items, only: [:index, :update,:destroy, :create]
-    delete 'cart_items' => 'cart_items#destroy_all'
+    resources :cart_items, only: [:index, :update, :create]
+    delete 'cart_item/:id' => 'cart_items#destroy', as: 'destroy_cart_item'
+    delete 'cart_items' => 'cart_items#destroy_all', as: 'destroy_cart_items'
     resources :orders, only: [:new, :create, :show]
     post '/orders/confirm' => 'orders#confirm'
     get '/orders/decision' => 'orders#decision'
