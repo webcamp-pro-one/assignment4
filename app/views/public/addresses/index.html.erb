@@ -1,0 +1,60 @@
+<div class="container-fluid">
+    
+    <div class ="row">
+        
+        <div class="col-md-2 bg-danger">
+           <h3 class="mt-5 mb-4 bg-light rounded-pill text-center">配送先一覧</h3> 
+        </div>
+        
+        <div class="col-md-7 my-5">
+            <div class="row">
+                <%= form_with model: @address, url: addresses_path, local: true do |f| %>
+                    <table class="table">
+                        <tr>
+                            <th width="30%"><%= f.label "郵便番号" %></th>
+                            <td><%= f.text_field :postal_code %></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th width="30%"><%= f.label :"住所" %></th>
+                            <td><%= f.text_field :address %></td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <th width="30%"><%= f.label :"宛名" %></th>
+                            <td><%= f.text_field :name %></td>
+                            <td><%= f.submit "登録" %></td>
+                        </tr>
+                    </table>
+                <% end %>
+            </div>
+        
+            <div class="row">
+                <table width="80%"class="table">
+                    <tr width="80%" class="table-warning">
+                        <th width="30%">郵便番号</th>
+                        <th>住所</th>
+                        <th width="20%">名前</th>
+                        <th></th>
+                    </tr>
+                    <% @addresses.each do |address| %>
+                    <tr>
+                        <td><%= address.postal_code %></td>
+                        <td><%= address.address %></td>
+                        <td><%= address.name %></td>
+                        <td>
+                            <%= link_to "編集する", edit_address_path(address) %>
+                            <%= link_to "削除する", address_path(address), method: :delete %>
+                        </td>
+                    </tr>
+                    <% end %>
+                </table>
+            </div>
+        </div>
+
+        <div class="col-md-1 bg-warning"></div>
+         <div class="col-md-1 bg-light"></div>
+        <div class="col-md-1 bg-danger"></div>
+    </div>
+    
+</div>
