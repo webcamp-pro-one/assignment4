@@ -1,0 +1,38 @@
+<div class="container-fluid">
+    <div class ="row">
+        
+        <div class="col-md-2 bg-danger">
+           <h3 class="mt-5 mb-4 bg-light rounded-pill text-center">注文履歴一覧</h3> 
+        </div>
+        
+        <div class="col-md-7 my-5">
+            <table class="table">
+                <tr class="table-warning">
+                    <th width="30%">注文日</th>
+                    <th>配送先</th>
+                    <th width="20%">支払金額</th>
+                    <th>手配状況</th>
+                    <th></th>
+                </tr>
+                <% @orders.each do |order| %>
+                <tr>
+                    <td><%= order.create_at %></td>
+                    <td>
+                        <%= order.delivery_name %></br>
+                        <%= order.delivery_postal_code %></br>
+                        <%= order.delivery_address %>
+                    </td>
+                    <td><%= order.billing_amount %></td>
+                    <td><%= order.is_active %></td>
+                    <td><%= link_to "表示する", order_path(order) %></td>
+                </tr>
+                <% end %>
+            </table>
+        </div>
+
+        <div class="col-md-1 bg-warning"></div>
+         <div class="col-md-1 bg-light"></div>
+        <div class="col-md-1 bg-danger"></div>
+    </div>
+    
+</div>

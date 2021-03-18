@@ -14,6 +14,18 @@ class ApplicationController < ActionController::Base
 
     protected
     
+    def set_customer
+        @id = current_customer.id
+    end
+    
+    def set_shipping
+        @shipping = 800
+    end
+    
+    def set_tax
+        @tax = 1.1
+    end
+    
     def configure_permitted_parameters
         if resource_class == Customer
             devise_parameter_sanitizer.permit(:sign_up, keys: [:last_name,
@@ -30,4 +42,5 @@ class ApplicationController < ActionController::Base
             devise_parameter_sanitizer.permit(:account_update,keys:[:name,:email])
         end
     end
+    
 end

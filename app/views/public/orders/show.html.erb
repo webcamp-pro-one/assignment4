@@ -1,0 +1,77 @@
+<div class="container-fluid">
+    <div style="min-height:100%" class ="row">
+        
+        <div class="col-md-2 bg-danger">
+           <h3 class="mt-5 mb-4 bg-light rounded-pill text-center">注文履歴詳細</h3> 
+        </div>
+        
+        <div class="col-md-4 my-5">
+            <h5>注文情報</h5>
+            <table class="table">
+                <tr>
+                    <th class="table-warning">注文日</th>
+                    <td><%= @order.create_at %></td>
+                </tr>
+                <tr>
+                    <th class="table-warning">配送先</th>
+                    <td>
+                        <%= @order.delivery_name %></br>
+                        <%= @order.delivery_postal_code %></br>
+                        <%= @order.delivery_address %>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="table-warning">支払方法</th>
+                    <td><%= @order.payment_option %></td>
+                </tr>
+                <tr>
+                    <th class="table-warning">手配状況</th>
+                    <td><%= @order.is_active %></td>
+                </tr>
+            </table>
+        </div>
+        
+        <div class="col-md-4 my-5">
+            <div>
+                <h5 >注文内容</h5>
+                <table class="table">
+                    <tr>
+                        <th class="table-warning">商品名</th>
+                        <th class="table-warning">単価（税込）</th>
+                        <th class="table-warning">個数</th>
+                        <th class="table-warning">小計</th>
+                    </tr>
+                    <% @order.order_items.each do |order_item| %>
+                    <tr>
+                        <td><%= order_item.item.name %></td>
+                        <td><%= order_item.price_intax %></td>
+                        <td><%= order_item.amount %></td>
+                        <td><%= order_item.price_intax*order_item.amount %></td>
+                    </tr>
+                    <% end %>
+                </table>
+            </div>
+            <div class="my-5">
+                <h5 class="mb-4">請求情報</h5>
+                <table class="table">
+                    <tr>
+                        <th class="table-warning">商品合計</th>
+                        <td><%= @order.billing_amount - @order.shipping %></td>
+                    </tr>
+                    <tr>
+                        <th class="table-warning">送料</th>
+                        <td><%= @order.shipping %></td>
+                    </tr>
+                    <tr>
+                        <th class="table-warning">請求額</th>
+                        <td><%= @order.billing_amount %></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+        
+        <div class="col-md-1 bg-warning"></div>
+        <div class="col-md-1 bg-danger"></div>
+    </div>
+    
+</div>

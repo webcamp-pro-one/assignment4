@@ -1,0 +1,24 @@
+<%= form_with model: @order, url:orders_confirm_path, local: true do |f| %>
+
+<h4>支払方法</h4>
+<%= f.text_field :payment_option %>
+<h4>郵便番号</h4>
+<%= f.text_field :delivery_postal_code %>
+<h4>住所</h4>
+<%= f.text_field :delivery_address %>
+<h4>名前</h4>
+<%= f.text_field :delivery_name %>
+
+
+<% @billing_amount = 0 %>
+<% @cart_items.each do |cart_item| %>
+<% @billing_amount += cart_item.amount*(cart_item.item.price*@tax).floor %>
+<% end %>
+
+
+<%= f.hidden_field :shipping, value: @shipping %>
+<%= f.hidden_field :billing_amount, value: @billing_amount %>
+
+
+<%= f.submit '保存' %>
+<% end %>
