@@ -1,8 +1,11 @@
 class Public::CartItemsController < ApplicationController
     
+    before_action :set_tax, only: [:index]
+    
     def index
         @cart_items = CartItem.all
-        @tax = 1.1
+        @order = Order.new
+        @order_item = @order.order_items.new
     end
     
     def create
@@ -28,5 +31,16 @@ class Public::CartItemsController < ApplicationController
     def cart_item_params
         params.require(:cart_item).permit(:customer_id, :item_id, :amount)
     end
+    
+    def order_item_params
+        params.require(:order_item).permit(:price_intax, 
+                                           :amount,
+                                           :is_active,
+                                           :create_at,
+                                           :update_at,
+                                           :item_id,
+                                           :order_id)
+    end
+    
     
 end

@@ -9,23 +9,25 @@
              <table width="50%" class="table">
                 <tr>
                    <th>商品名</th>
-                   <th>税抜価格</th>
+                   <th>税込価格</th>
                    <th>数量</th>
                    <th>小計</th>
                    <th></th>
                 </tr>
                 <% @cart_items.each do |cart_item| %>
-                    <% intax = (cart_item.item.price*@tax).floor %>
-                    <% subtotal = (intax*cart_item.amount) %>
+                    <% price_intax = (cart_item.item.price*@tax).floor %>
+                    <% subtotal = (price_intax*cart_item.amount) %>
                     <tr>
                         <td><%= cart_item.item.name %></td>
-                        <td><%= intax %></td>
+                        <td><%= price_intax %></td>
                         <td><%= cart_item.amount %></td>
                         <td><%= subtotal %></td>
                         <td><%= link_to "削除", destroy_cart_item_path(cart_item), method: :delete %></td>
                     </tr>
-                <% end %>
+                    <% end %>
            </table>
+           
+           <%= link_to "注文に進む", new_order_path %>
         </div>
         <div class="col-md-1 bg-danger"></div>
         <div class="col-md-1 bg-light"></div>
