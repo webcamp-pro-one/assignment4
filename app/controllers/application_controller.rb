@@ -11,7 +11,6 @@ class ApplicationController < ActionController::Base
         end
     end
 
-
     protected
     
     def set_customer
@@ -34,12 +33,20 @@ class ApplicationController < ActionController::Base
                                                                :first_name_kana,
                                                                :telephone_number,
                                                                :postal_code,
-                                                               :address])
-            devise_parameter_sanitizer.permit(:sign_in,keys:[:email])
-            devise_parameter_sanitizer.permit(:account_update,keys:[:name,:email])
+                                                               :address,
+                                                               :is_activ])
+            devise_parameter_sanitizer.permit(:sign_in,keys: [:email])
+            devise_parameter_sanitizer.permit(:account_update,keys: [:last_name,
+                                                                    :first_name,
+                                                                    :last_name_kana,
+                                                                    :first_name_kana,
+                                                                    :telephone_number,
+                                                                    :postal_code,
+                                                                    :address,
+                                                                    :is_active])
         elsif resource_class == Admin
             devise_parameter_sanitizer.permit(:sign_up, keys: [:name])
-            devise_parameter_sanitizer.permit(:account_update,keys:[:name,:email])
+            devise_parameter_sanitizer.permit(:account_update,keys: [:name,:email])
         end
     end
     

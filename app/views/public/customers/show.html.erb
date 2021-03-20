@@ -1,0 +1,54 @@
+<div class="container-fluid">
+    <div style="min-height:100%" class ="row">
+        <div class="col-md-1 py-4"></div>
+        <div class="col-md-2  bg-danger">
+           <h3 class="mt-5 mb-4 bg-light rounded-pill text-center">会員情報</h3> 
+        </div>
+        
+        <div class="col-md-4 my-5">
+            <h5>会員情報</h5>
+            <%= link_to "編集する", mypage_edit_path %>
+            <table class="table">
+                <tr>
+                    <th>氏名</th>
+                    <td>
+                        <%= @customer.last_name %> 
+                        <%= @customer.first_name %>
+                    </td>
+                </tr>
+                <tr>
+                    <th>フリガナ</th>
+                    <td>
+                        <%= @customer.last_name_kana %> 
+                        <%= @customer.first_name_kana %>
+                    </td>
+                </tr>
+                <tr>
+                    <th>郵便番号</th>
+                    <td><%= @customer.postal_code %></td>
+                </tr>
+                <tr>
+                    <th>住所</th>
+                    <td><%= @customer.address %></td>
+                </tr>
+                <tr>
+                    <th>電話番号</th>
+                    <td><%= @customer.telephone_number %></td>
+                </tr>
+                <tr>
+                    <th>メールアドレス</th>
+                    <td><%= @customer.email %></td>
+                </tr>
+                 <tr>
+                    <th>会員ステータス</th>
+                    <td><%= @customer.is_active %></td>
+                </tr>
+            </table>
+            <%= link_to "配送先一覧", addresses_path %>
+            <%= link_to "注文一覧", orders_path %>
+        </div>
+        
+        <div class="col-md-1 offset-md-2"></div>
+    </div>
+    
+</div>
