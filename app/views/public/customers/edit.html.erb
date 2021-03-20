@@ -1,10 +1,11 @@
-<div class="container pt-5">
+<div class="containerfluid">
     <div class="row">
-            <div class="col-md-2"></div>
-        <div class="col-md-8">
-            <h3 class="pb-4">会員情報編集</h3>
+            <div class="col-md-2 offset-md-1 bg-danger">
+                <h3 class="mt-5 mb-4 bg-light rounded-pill text-center">会員情報編集</h3>
+            </div>
+        <div class="col-md-6 pt-5">
             <div>
-                <%= form_with model: [:admin, @customer], local: true do |f| %>
+                <%= form_with model: @customer, url: mypage_edit_path,method: :patch, local: true do |f| %>
                     <table class="table">
                         <tr>
                             <th>
@@ -44,11 +45,19 @@
                                <%= f.email_field :email, autofocus: true, id:"inputEmail", placeholder: "メールアドレス" %>
                             </td>
                         </tr>
+                        <tr>
+                           <th><label for="inputIsActiv">会員ステータス</label></th>
+                           <td></td>
+                        </tr>
                     </table>
-                    <%= f.submit "保存" %>
+                    <div class="text-center pb-4">
+                    <%= f.submit "保存", class: "btn btn-primary" %>
+                    <%= link_to "退会する", customer_status_path, class: "btn btn-danger pl-3" %>
+                    </div>
                 <% end %>
+                
             </div>
         </div>
-        <div class="col-md-2"></div>
+        <div class="col-md-1 offset-md-2"></div>
     </div>
 </div>

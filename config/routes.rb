@@ -27,9 +27,9 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :show,]
     get '/mypage' => 'customers#show'
     get '/mypage/edit' => 'customers#edit'
-    patch '/mypage' => 'customers#update'
-    get 'customers/:id/status' => 'customers#status'
-    patch 'customers/:id' => 'customers#change'
+    patch '/mypage/edit' => 'customers#update'
+    get 'customers//status' => 'customers#status', as: 'customer_status'
+    patch 'customers/change' => 'customers#change', as: 'change_status'
     resources :cart_items, only: [:index, :update, :create]
     delete 'cart_item/:id' => 'cart_items#destroy', as: 'destroy_cart_item'
     delete 'cart_items' => 'cart_items#destroy_all', as: 'destroy_cart_items'
