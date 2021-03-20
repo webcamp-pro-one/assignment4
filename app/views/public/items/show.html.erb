@@ -33,11 +33,13 @@
                 </tr>
             </table>
             <div>
-            <%= form_with model: @cart_item, url: '/cart_items', local: true do |f| %>
-                <%= f.hidden_field :customer_id, value: current_customer.id %>
-                <%= f.hidden_field :item_id, value: @item.id %>
-                <%= f.text_field :amount, placeholder: "個数" %>
-                <%= f.submit "カートに入れる" %>
+            <% if customer_signed_in? %>
+                <%= form_with model: @cart_item, url: '/cart_items', local: true do |f| %>
+                    <%= f.hidden_field :customer_id, value: current_customer.id %>
+                    <%= f.hidden_field :item_id, value: @item.id %>
+                    <%= f.text_field :amount, placeholder: "個数" %>
+                    <%= f.submit "カートに入れる" %>
+                <% end %>
             <% end %>
             </div>
             </div>
