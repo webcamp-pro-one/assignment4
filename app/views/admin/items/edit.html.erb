@@ -8,6 +8,12 @@
                     <table class="table">
                         <tr>
                             <th>
+                                <label for="inputName">商品画像</label>
+                            </th>
+                            <td><%= f.attachment_field :image %></td>
+                        </tr>
+                        <tr>
+                            <th>
                                 <label for="inputName">商品名</label>
                             </th>
                             <td><%= f.text_field :name, autofocus: true, id:"inputName", placeholder: "商品名" %></td>

@@ -15,7 +15,11 @@
         <nav class="navbar-right">
           <div class="container-fluid bg-danger py-4">
           <div class="row bd-highlight py-3" style="background-color: white; width:1000px,">
-          <div class="col-md-3 bg-dark rounded-pill pl-3 text-white"><h1>Nagano Cake</h1></div>
+          <div class="col-md-3 bg-dark rounded-pill pl-3">
+            <%= link_to root_path, class: "text-white text-decoration-none" do %>
+              <h1>Nagano Cake</h1>
+            <% end %>
+          </div>
           <div class="col-md-5 offset-md-4">
           <% if customer_signed_in? %>
             <ul class="nav navbar-right nav-pills mb-3 " id="pills-tab" role="tablist">
