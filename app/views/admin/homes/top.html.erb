@@ -1,10 +1,10 @@
-<div class="container">
+<div class="container-fluid">
     
-    <div class="row pt-5 pb-3">
-        <div class="col-md-2"></div>
-        
-        <div class="col-md-8">
-            <h3>注文履歴一覧</h3>
+    <div style="height: 500px;" class="row">
+        <div class="col-md-2 offset-md-1 bg-danger">
+            <h3 class="mt-5 bg-light rounded-pill text-center">注文履歴一覧</h3>
+        </div>
+        <div class="col-md-8 pt-5">
             <table class="table">
                 <tr>
                    <th>購入日時</th>
@@ -16,19 +16,19 @@
                     <tr>
                         <td>
                             <%= link_to admin_order_path(order) do %>
-                                <%= order.at_create %>
+                                <%= order.created_at.strftime('%y/%m/%d') %>
                             <% end %>
                             </td>
                         <td>
-                                <%= order.customer_id %>
+                            <%= order.customer.last_name %><%= order.customer.first_name %>
                         </td>
-                        <td></td>
+                        <% @total_amount = order.order_items.sum(:amount) %>
+                        <td><%= @total_amount %></td>
                         <td><%= order.is_active %></td>
                     </tr>
                 <% end %>
             </table>
+            <%= paginate @orders %>
         </div>
-        
-        <div class="col-md-2"></div>
-    </div>
+        </div>
 </div>

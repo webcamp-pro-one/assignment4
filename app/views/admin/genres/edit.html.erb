@@ -1,0 +1,19 @@
+<div class="container-fluid">
+    <div style="height: 500px;" class="row">
+        <div class="col-md-2 offset-md-1 bg-danger">
+          <h3 class="mt-5  bg-light rounded-pill text-center">ジャンル一覧</h3> 
+        </div>
+        <div class="col-md-6 pt-5">
+        <%= form_with model: @genre, url: admin_genre_path(@genre), method: :patch, local: true do |f| %>
+            <table class="table">
+                <tr>
+                    <th><label for="inputGenre">ジャンル</label></th>
+                    <td><%= f.text_field :name, autofocus: true, id:"inputGenre" %></td>
+                    <td><%= f.submit '変更を保存',class: "btn btn-primary" %></td>
+                </tr>
+            </table>
+        <% end %> 
+
+        </div>
+    </div>
+</div>

@@ -1,16 +1,26 @@
-<div class-"container">
+<div class-"container-fluid">
     <div class="row">
-        <h1>商品一覧</h1>
-    </div> 
-    <div class="">
-        
-        <% @items.each do |item| %>
-        <div class="col">
-        <%= link_to "image", item_path(item) %> 
-        <%= item.name %></br>
-        <%= item.price %>
-        
-        <% end %>
+        <div class="col-md-2 offset-md-1 bg-danger">
+           <h3 class="mt-5 bg-light rounded-pill text-center">商品一覧</h3> 
         </div>
-    </div>
+        <div class="col-md-8 d-flex flex-column py-5">
+                <div class="d-flex flex-row flex-wrap py-5">
+                    <% @items.each do |item| %>
+                    <div style="width: 25%;" class="pl-4">
+                        <div class="pt-4 d-flex justify-content-center" >
+                            <%= link_to item_path(item) do %>
+                                <%= attachment_image_tag item, :image, :fill, 150, 150 %>
+                            <% end %> 
+                            </div>
+                            <p style="font-size: 10px" class="text-center bg-dark text-white rounded-pill mt-2"><%= item.name %></p>
+                            <p class="text-center">¥<%= item.price %></p>
+                        
+                        </div>
+                    <% end %>
+                </div>
+                
+            <div class="d-flex justify-content-center"><%= paginate @items %></div>
+        </div>
+        
+    </div> 
 </div>

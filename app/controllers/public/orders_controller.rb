@@ -7,11 +7,38 @@ class Public::OrdersController < ApplicationController
     def new 
          @order = current_customer.order.new
          @cart_items = current_customer.cart_items
+         @customer = current_customer
+         @addresses = Address.all
     end
     
     def confirm
         @order = current_customer.order.new(order_params)
+        @customer = current_customer
         @cart_items = current_customer.cart_items
+        
+        if params[:order][:payment] == "0"
+            @order.payment_option = 0
+        elsif params[:order][:payment] == "1"
+            @order.payment_option = 1
+        end
+        
+        if params[:order][:address_option] == "0"
+            @order.delivery_postal_code = @customer.postal_code
+            @order.delivery_address = @customer.address
+            @order.delivery_name = @customer.last_name+@customer.first_name
+            
+        elsif params[:order][:address_option] == "1"
+            @a_id = params[:order][:order_address].to_i
+            @order_address = Address.find(@a_id)
+            @order.delivery_postal_code = @order_address.postal_code
+            @order.delivery_address = @order_address.address
+            @order.delivery_name = @order_address.name
+            
+        elsif params[:order][:address_option] == "2"
+            @order.delivery_postal_code = params[:order][:delivery_postal_code]
+            @order.delivery_address = params[:order][:delivery_address]
+            @order.delivery_name = params[:order][:delivery_name]
+        end
     end
     
     def create
@@ -37,7 +64,7 @@ class Public::OrdersController < ApplicationController
     end
     
     def index
-        @orders = Order.all
+        @orders = Order.page(params[:page]).per(3).reverse_order
     end
     
     def show
@@ -56,8 +83,8 @@ class Public::OrdersController < ApplicationController
                                       :billing_amount,
                                       :payment_option,
                                       :is_active,
-                                      :create_at,
-                                      :update_at,
+                                      :created_at,
+                                      :updated_at,
                                       :customer_id)
     end
     
@@ -65,8 +92,8 @@ class Public::OrdersController < ApplicationController
         params.require(:order_item).permit(:price_intax, 
                                            :amount,
                                            :is_active,
-                                           :create_at,
-                                           :update_at,
+                                           :created_at,
+                                           :updated_at,
                                            :item_id,
                                            :order_id)
     end

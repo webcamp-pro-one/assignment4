@@ -1,11 +1,34 @@
-<%= form_with model: @item, url: admin_items_path, method: :post, local: true do |f| %>
-<h4>商品画像</h4>
-<%= f.attachment_field :image %>
-<h4>商品名</h4>
-<%= f.text_field :name %>
-<h4>説明</h4>
-<%= f.text_field :introduction %>
-<h4>値段</h4>
-<%= f.text_field :price %>
-<%= f.submit '保存' %>
-<% end %>
+<div class="container-fluid">
+    <div style="height: 500px;" class="row">
+        <div class="col-md-2 offset-md-1 bg-danger">
+          <h3 class="mt-5  bg-light rounded-pill text-center">会員情報編集</h3> 
+        </div>
+        <div class="col-md-6 pt-5">
+        <%= form_with model: @item, url: admin_items_path, method: :post, local: true do |f| %>
+        <table class="table">
+            <tr>
+                <th>商品画像</th>
+                <td><%= f.attachment_field :image %></td>
+            </tr>
+            <tr>
+                <th>商品名</th>
+                <td><%= f.text_field :name %></td>
+            </tr>
+            <tr>
+                <th>説明</th>
+                <td><%= f.text_area :introduction %></td>
+            </tr>
+            <tr>
+                <th>値段</th>
+                <td><%= f.text_field :price %></td>
+            </tr>
+        </table>
+
+            <div class="text-center">
+                 <%= f.submit '保存',class: "btn btn-primary" %>  
+            </div>
+            
+        <% end %>    
+        </div>
+    </div>
+</div>

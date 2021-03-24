@@ -11,7 +11,7 @@ class Public::CustomersController < ApplicationController
     end
     
     def update
-        @customer = Customer.new(params[:id])
+        @customer = current_customer
         @customer.update(customer_params)
         redirect_to mypage_path
     end
@@ -21,7 +21,7 @@ class Public::CustomersController < ApplicationController
     end
     
     def change
-        @customer = Customer.new(id: @id)
+        @customer = current_customer
         @customer.update(is_active: "false")
         reset_session
         redirect_to root_path
