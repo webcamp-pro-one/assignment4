@@ -3,7 +3,7 @@ class Public::CartItemsController < ApplicationController
     before_action :set_tax, only: [:index]
     
     def index
-        @cart_items = CartItem.all
+        @cart_items = current_customer.cart_items.all
         @order = Order.new
         @order_item = @order.order_items.new
     end
