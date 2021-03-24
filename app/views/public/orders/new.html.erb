@@ -1,24 +1,68 @@
-<%= form_with model: @order, url:orders_confirm_path, local: true do |f| %>
+<div class="container-fluid">
+  <div class="row">
+    
+    <div class="col-md-2 offset-md-1 bg-danger">
+      <h3 class="mt-5 mb-4 bg-light rounded-pill text-center">注文情報入力</h3> 
+    </div>
+    
+    <div class="col-md-6 d-flex justify-content-center py-5">
+      <%= form_with model: @order, url:orders_confirm_path, local: true do |f| %>
+      
+          <h5 style="width: 100px;" class="bg-success text-white text-center rounded-pill">支払方法</h5>
+          <%= f.radio_button :payment, 0, checked: "checked" %>
+          <%= f.label :payment, "クレジットカード" %></br>
 
-<h4>支払方法</h4>
-<%= f.text_field :payment_option %>
-<h4>郵便番号</h4>
-<%= f.text_field :delivery_postal_code %>
-<h4>住所</h4>
-<%= f.text_field :delivery_address %>
-<h4>名前</h4>
-<%= f.text_field :delivery_name %>
+          <%= f.radio_button :payment, 1 %>
+          <%= f.label :payment, "銀行振込" %></br>
 
+          <h5 style="width: 100px;" class="bg-success text-white text-center rounded-pill">お届け先</h5>
+          
+          <%= f.radio_button :address_option, 0, checked: "checked" %>
+          <%= f.label :order_address, "ご自身の住所" %></br>
+          <div class="pl-4">
+            〒<%= @customer.postal_code %> <%= @customer.address %></br>
+            　<%= @customer.last_name %><%= @customer.first_name %>
+          </div>
+          
+          <%= f.radio_button :address_option, 1 %>
+          <%= f.label :order_address, "登録済住所から選択" %></br>
+          <%= f.collection_select(:order_address, @addresses, :id, :select_name) %>
+          
+          <div>
+          <%= f.radio_button :address_option, 2 %>
+          <%= f.label :order_address, "新しいお届け先" %>
+              新規登録
+              <table class="table">
+                <tr>
+                  <th>郵便番号</th>
+                  <td><%= f.text_field :delivery_postal_code %></td>
+                </tr>
+                <tr>
+                  <th>住所</th>
+                  <td><%= f.text_field :delivery_address %></td>
+                </tr>
+                <tr>
+                  <th>宛名</th>
+                  <td><%= f.text_field :delivery_name %></td>
+                </tr>
+              </table>
+              
+          </div>
 
-<% @billing_amount = 0 %>
-<% @cart_items.each do |cart_item| %>
-<% @billing_amount += cart_item.amount*(cart_item.item.price*@tax).floor %>
-<% end %>
-
-
-<%= f.hidden_field :shipping, value: @shipping %>
-<%= f.hidden_field :billing_amount, value: @billing_amount %>
-
-
-<%= f.submit '保存' %>
-<% end %>
+        <% @billing_amount = 0 %>
+        <% @cart_items.each do |cart_item| %>
+        <% @billing_amount += cart_item.amount*(cart_item.item.price*@tax).floor %>
+        <% end %>
+        
+        
+        <%= f.hidden_field :shipping, value: @shipping %>
+        <%= f.hidden_field :billing_amount, value: @billing_amount + @shipping %>
+        
+        <div class="text-center">
+          <%= f.submit '確認画面', class: "mt-4 btn btn-primary " %>
+        </div>
+        
+        <% end %>
+    </div>
+  </div>
+</div>

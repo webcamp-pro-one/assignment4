@@ -1,8 +1,8 @@
 <div class="container-fluid">
-    <div class ="row">
+    <div style="height: 500px;" class ="row">
         
-        <div class="col-md-2 bg-danger">
-           <h3 class="mt-5 mb-4 bg-light rounded-pill text-center">注文履歴一覧</h3> 
+        <div class="col-md-2 offset-md-1 bg-danger">
+           <h3 class="mt-5 bg-light rounded-pill text-center">注文履歴一覧</h3> 
         </div>
         
         <div class="col-md-7 my-5">
@@ -16,11 +16,11 @@
                 </tr>
                 <% @orders.each do |order| %>
                 <tr>
-                    <td><%= order.create_at %></td>
+                    <td><%= order.created_at.in_time_zone('Tokyo').strftime('%y/%m/%d') %></td>
                     <td>
-                        <%= order.delivery_name %></br>
-                        <%= order.delivery_postal_code %></br>
-                        <%= order.delivery_address %>
+                        配送先：〒<%= order.delivery_postal_code %></br>
+                        　　　　<%= order.delivery_address %></br>
+                        宛名：　<%= order.delivery_name %>
                     </td>
                     <td><%= order.billing_amount %></td>
                     <td><%= order.is_active %></td>
@@ -28,11 +28,8 @@
                 </tr>
                 <% end %>
             </table>
+            <%= paginate @orders %>
         </div>
-
-        <div class="col-md-1 bg-warning"></div>
-         <div class="col-md-1 bg-light"></div>
-        <div class="col-md-1 bg-danger"></div>
     </div>
     
 </div>
