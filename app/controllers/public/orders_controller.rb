@@ -8,7 +8,7 @@ class Public::OrdersController < ApplicationController
          @order = current_customer.order.new
          @cart_items = current_customer.cart_items
          @customer = current_customer
-         @addresses = Address.all
+         @addresses = current_customer.addresses.all
     end
     
     def confirm
